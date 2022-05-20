@@ -34,15 +34,10 @@ class Database:
             cursor = conn.cursor()
 
             cursor.execute(f'''INSERT INTO tasks VALUES ({taskid}, '{description}', '{date}', {length}, {user});''')
-            #cursor.execute('INSERT INTO tasks VALUES (?, ?, ?, ?, ?)', ())
 
             conn.commit()
             conn.close()
         finally: mutex.release()
-    
-
-    #def insert_task(self, task: Task):
-        #self.insert_task(task.taskid, task.description, task.date, task.length, task.user)
 
     def get_tasks(self) -> list:
         mutex = Lock()
